@@ -16,7 +16,7 @@ jobs:
         runs-on: ubuntu-24.04
         defaults:
           run:
-            working-directory: ./PersonalWeb.Api
+            working-directory: ./PersonalWeb.Admin
         strategy:
             matrix:
                 node-version: [22.x, 24.x]
