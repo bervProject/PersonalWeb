@@ -1,0 +1,45 @@
+name: Dotnet
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - v*
+  pull_request:
+    branches: [ main ]
+env:
+  ConnectionStrings__Default: "Host=localhost;Database=personalwebapi_test;Username=postgres;Password=testpass123"
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    services:
+      psql:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_PASSWORD: testpass123
+          POSTGRES_DB: personalwebapi_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: "9.0.x"
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+    - name: Migrate DB
+      run: |
+        dotnet tool install --global dotnet-ef
+        dotnet tool restore
+        dotnet ef database update --project PersonalWebApi
+    - name: Test
+      run: dotnet test --configuration Release --no-restore --no-build --verbosity normal --collect:"XPlat Code Coverage"
+    - name: Report Codecov
+      uses: codecov/codecov-action@v5
