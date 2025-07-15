@@ -77,7 +77,7 @@ const resourceList = (permissions: any) => [
       create={BlogCreate}
     />
   ) : null
-].filter((element) => Boolean(element)).map(element => element as JSX.Element);
+].filter((element) => Boolean(element)).map(element => element as React.JSX.Element);
 
 function App() {
   const [dataProvider, setDataProvider] = useState<OdataDataProvider>();
