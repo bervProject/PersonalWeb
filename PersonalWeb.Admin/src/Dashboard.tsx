@@ -90,7 +90,7 @@ export default () => {
   return (
     <Grid container spacing={2}>
       <Title title="Welcome to the administration" />
-      <Grid item xs={6}>
+      <Grid size={6}>
         <Card>
           <CardHeader title="Users Data" />
           <CardContent>
@@ -102,7 +102,7 @@ export default () => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={6}>
+      <Grid size={6}>
         <Card>
           <CardHeader title="Blog Data" />
           <CardContent>
