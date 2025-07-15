@@ -5,6 +5,8 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 const domNode = document.getElementById('root');
-const root = createRoot(domNode);
-root.render(<App />);
-registerServiceWorker();
+if (domNode) {
+  const root = createRoot(domNode);
+  root.render(<App />);
+  registerServiceWorker();
+}
