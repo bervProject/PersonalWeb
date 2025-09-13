@@ -3,7 +3,7 @@
   "version": "0.1.2",
   "private": true,
   "dependencies": {
-    "axios": "^1.9.0",
+    "axios": "^1.12.0",
     "http-proxy-middleware": "^3.0.5",
     "prop-types": "^15.8.1",
     "ra-data-odata-server": "^5.0.0",
