@@ -37,20 +37,14 @@ jobs:
     docker-test:
         runs-on: ubuntu-24.04
         if: github.event_name == 'pull_request'
-        defaults:
-          run:
-            working-directory: ./PersonalWeb.Admin
         needs: build
         steps:
         - uses: actions/checkout@v5
         - name: Run tests
-          run: docker build . --file Dockerfile
+          run: docker build PersonalWeb.Admin/ --file Dockerfile
     docker-push:
         # Ensure test job passes before pushing image.
         needs: build
-        defaults:
-          run:
-            working-directory: ./PersonalWeb.Admin
         runs-on: ubuntu-24.04
         if: github.event_name == 'push'
         steps:
@@ -76,7 +70,7 @@ jobs:
         - name: Build and push Docker images
           uses: docker/build-push-action@v6
           with:
-            context: .
+            context: PersonalWeb.Admin/.
             push: true
             tags: ${{ steps.meta.outputs.tags }}
             labels: ${{ steps.meta.outputs.labels }}
