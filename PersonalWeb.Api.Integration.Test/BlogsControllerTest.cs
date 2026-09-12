@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 using PersonalWeb.Api.Integration.Test.Models;
 using PersonalWeb.Api.Models;
 using System;
@@ -9,10 +8,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Serialization;
 using Xunit;
 
 namespace PersonalWeb.Api.Integration.Test
