@@ -4,10 +4,12 @@ import {
   Datagrid,
   TextField,
   DateField,
+  BooleanField,
   Create,
   SimpleForm,
   TextInput,
   DateInput,
+  BooleanInput,
   Edit,
   Show,
   SimpleShowLayout,
@@ -18,13 +20,12 @@ import {
 export const ExperienceList = (props: object) => (
   <List {...props}>
     <Datagrid>
-      <TextField label="id" source="id" />
-      <DateField source="fromDate" />
-      <DateField source="toDate" />
-      <TextField source="jobName" />
-      <TextField source="institution" />
-      <DateField source="createdAt" />
-      <DateField source="updatedAt" />
+      <TextField source="id" />
+      <TextField source="companyName" />
+      <TextField source="roleTitle" />
+      <DateField source="startDate" />
+      <DateField source="endDate" />
+      <BooleanField source="isCurrent" />
       <EditButton />
       <ShowButton />
     </Datagrid>
@@ -34,14 +35,15 @@ export const ExperienceList = (props: object) => (
 export const ExperienceShow = (props: object) => (
   <Show {...props}>
     <SimpleShowLayout>
-      <TextField label="id" source="id" />
-      <DateField source="fromDate" />
-      <DateField source="toDate" />
-      <TextField source="jobName" />
-      <TextField source="institution" />
-      <TextField source="description" />
-      <DateField source="createdAt" />
-      <DateField source="updatedAt" />
+      <TextField source="id" />
+      <TextField source="companyName" />
+      <TextField source="roleTitle" />
+      <TextField source="location" />
+      <DateField source="startDate" />
+      <DateField source="endDate" />
+      <BooleanField source="isCurrent" />
+      <TextField source="descriptionHtml" />
+      <TextField source="technologiesUsed" />
     </SimpleShowLayout>
   </Show>
 );
@@ -49,15 +51,14 @@ export const ExperienceShow = (props: object) => (
 export const ExperienceCreate = (props: object) => (
   <Create {...props}>
     <SimpleForm>
-      <TextInput source="title" />
-      <TextInput multiline source="description" />
-      <TextInput source="repositoryLink" type="url" />
+      <TextInput source="companyName" />
+      <TextInput source="roleTitle" />
+      <TextInput source="location" />
       <DateInput source="startDate" />
       <DateInput source="endDate" />
-      <TextInput source="location" />
-      <TextInput source="experienceType" />
-      <TextInput source="entityName" />
-      <TextInput source="entityLink" type="url" />
+      <BooleanInput source="isCurrent" />
+      <TextInput multiline source="descriptionHtml" />
+      <TextInput source="technologiesUsed" helperText='JSON array e.g. ["TypeScript","React"]' />
     </SimpleForm>
   </Create>
 );
@@ -66,11 +67,14 @@ export const ExperienceEdit = (props: object) => (
   <Edit {...props}>
     <SimpleForm>
       <TextInput disabled source="id" />
-      <DateInput source="fromDate" />
-      <DateInput source="toDate" />
-      <TextInput source="jobName" />
-      <TextInput source="institution" />
-      <TextInput multiline source="description" />
+      <TextInput source="companyName" />
+      <TextInput source="roleTitle" />
+      <TextInput source="location" />
+      <DateInput source="startDate" />
+      <DateInput source="endDate" />
+      <BooleanInput source="isCurrent" />
+      <TextInput multiline source="descriptionHtml" />
+      <TextInput source="technologiesUsed" helperText='JSON array e.g. ["TypeScript","React"]' />
     </SimpleForm>
   </Edit>
 );

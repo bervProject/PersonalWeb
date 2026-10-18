@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace PersonalWeb.Api.Models
 {
@@ -15,5 +15,13 @@ namespace PersonalWeb.Api.Models
         public string Description { get; set; }
         [MaxLength(2048)]
         public string RepositoryLink { get; set; }
+        [MaxLength(512)]
+        public string Slug { get; set; }
+        [MaxLength(4096)]
+        public string TechStack { get; set; }
+        [MaxLength(2048)]
+        public string LiveUrl { get; set; }
+        public bool IsPublished { get; set; } = true;
+        public int OrderIndex { get; set; }
     }
 }

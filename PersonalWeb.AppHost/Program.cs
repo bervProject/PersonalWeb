@@ -13,10 +13,11 @@ var webApi = builder.AddProject<Projects.PersonalWeb_Api>("apiservice")
     .WaitFor(postgresdb)
     .WaitForCompletion(migration);
 
-builder.AddNpmApp("admin", "../PersonalWeb.Admin")
+builder.AddNpmApp("admin", "../PersonalWeb.Admin", scriptName: "start")
     .WithReference(webApi)
     .WaitFor(webApi)
-    .WithEnvironment("BROWSER", "none") // Disable opening browser on npm start
+    .WithEnvironment("BROWSER", "none")
+    .WithEnvironment("API_URL", webApi.GetEndpoint("apiservice"))
     .WithHttpEndpoint(env: "PORT")
     .WithExternalHttpEndpoints()
     .PublishAsDockerFile();

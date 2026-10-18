@@ -5,35 +5,35 @@
   "type": "module",
   "dependencies": {
     "axios": "^1.20.0",
-    "http-proxy-middleware": "^4.2.0",
     "prop-types": "^15.8.1",
     "ra-data-odata-server": "^5.0.0",
-    "ra-input-rich-text": "^5.15.3",
-    "react": "^19.3.0",
-    "react-admin": "^5.15.3",
-    "react-dom": "^19.3.0",
-    "react-scripts": "^5.0.1"
+    "ra-input-rich-text": "^5.15.4",
+    "react": "^19.3.1",
+    "react-admin": "^5.15.4",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
-    "@babel/preset-env": "^8.0.5",
-    "@types/jest": "^30.0.0",
+    "@testing-library/react": "^16.3.0",
     "@types/node": "^22.20.2",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "babel-jest": "^30.5.1",
+    "@vitejs/plugin-react": "^4.4.1",
+    "@vitest/coverage-v8": "^3.2.4",
+    "happy-dom": "^21.0.3",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^30.5.1",
-    "jest-environment-jsdom": "^29.7.0",
-    "ts-jest": "^29.4.12",
+    "jsdom": "^26.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
-    "util": "^0.12.5"
+    "util": "^0.12.5",
+    "vite": "^6.3.5",
+    "vitest": "^3.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "jest",
-    "eject": "react-scripts eject"
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run"
   },
   "browserslist": [
     ">0.2%",

@@ -50,6 +50,7 @@ namespace PersonalWeb.Api.Integration.Test
         [Fact]
         public async Task PostTest()
         {
+            await AuthHelper.AuthenticateAsync(_httpClient);
             var newProject = new Project()
             {
                 Title = "My Project",
