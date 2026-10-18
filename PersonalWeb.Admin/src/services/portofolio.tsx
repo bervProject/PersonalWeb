@@ -6,9 +6,13 @@ import {
   DateField,
   ImageField,
   UrlField,
+  BooleanField,
+  NumberField,
   Create,
   SimpleForm,
   TextInput,
+  BooleanInput,
+  NumberInput,
   Edit,
   Show,
   SimpleShowLayout,
@@ -21,11 +25,9 @@ export const PortofolioList = (props: object) => (
     <Datagrid>
       <TextField source="id" />
       <TextField source="title" />
-      <ImageField source="image" />
-      <ImageField source="icon" />
-      <UrlField source="repository" />
-      <DateField source="createdAt" />
-      <DateField source="updatedAt" />
+      <TextField source="slug" />
+      <BooleanField source="isPublished" />
+      <NumberField source="orderIndex" />
       <EditButton />
       <ShowButton />
     </Datagrid>
@@ -37,12 +39,15 @@ export const PortofolioShow = (props: object) => (
     <SimpleShowLayout>
       <TextField source="id" />
       <TextField source="title" />
+      <TextField source="slug" />
       <TextField source="description" />
-      <ImageField source="image" />
-      <ImageField source="icon" />
-      <UrlField source="repository" />
-      <DateField source="createdAt" />
-      <DateField source="updatedAt" />
+      <ImageField source="coverImage" />
+      <UrlField source="link" />
+      <UrlField source="repositoryLink" />
+      <UrlField source="liveUrl" />
+      <TextField source="techStack" />
+      <BooleanField source="isPublished" />
+      <NumberField source="orderIndex" />
     </SimpleShowLayout>
   </Show>
 );
@@ -51,10 +56,15 @@ export const PortofolioCreate = (props: object) => (
   <Create {...props}>
     <SimpleForm>
       <TextInput source="title" />
-      <TextInput source="description" />
-      <TextInput source="image" type="url" />
-      <TextInput source="icon" type="url" />
-      <TextInput source="repository" type="url" />
+      <TextInput source="slug" />
+      <TextInput multiline source="description" />
+      <TextInput source="coverImage" type="url" />
+      <TextInput source="link" type="url" />
+      <TextInput source="repositoryLink" type="url" />
+      <TextInput source="liveUrl" type="url" />
+      <TextInput source="techStack" helperText='JSON array e.g. ["TypeScript","React"]' />
+      <BooleanInput source="isPublished" defaultValue={true} />
+      <NumberInput source="orderIndex" defaultValue={0} />
     </SimpleForm>
   </Create>
 );
@@ -64,10 +74,15 @@ export const PortofolioUpdate = (props: object) => (
     <SimpleForm>
       <TextInput disabled source="id" />
       <TextInput source="title" />
-      <TextInput source="description" />
-      <TextInput source="image" type="url" />
-      <TextInput source="icon" type="url" />
-      <TextInput source="repository" type="url" />
+      <TextInput source="slug" />
+      <TextInput multiline source="description" />
+      <TextInput source="coverImage" type="url" />
+      <TextInput source="link" type="url" />
+      <TextInput source="repositoryLink" type="url" />
+      <TextInput source="liveUrl" type="url" />
+      <TextInput source="techStack" helperText='JSON array e.g. ["TypeScript","React"]' />
+      <BooleanInput source="isPublished" />
+      <NumberInput source="orderIndex" />
     </SimpleForm>
   </Edit>
 );

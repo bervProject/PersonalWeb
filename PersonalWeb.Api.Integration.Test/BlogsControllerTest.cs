@@ -50,6 +50,7 @@ namespace PersonalWeb.Api.Integration.Test
         [Fact]
         public async Task PostTest()
         {
+            await AuthHelper.AuthenticateAsync(_httpClient);
             var newBlog = new Blog
             {
                 Title = "My Blog",
@@ -72,6 +73,7 @@ namespace PersonalWeb.Api.Integration.Test
         [Fact]
         public async Task PostInvalidTest()
         {
+            await AuthHelper.AuthenticateAsync(_httpClient);
             var newBlog = new Blog
             {
                 Title = "My Blog",
@@ -87,6 +89,7 @@ namespace PersonalWeb.Api.Integration.Test
         [Fact]
         public async Task GetByIdTest()
         {
+            await AuthHelper.AuthenticateAsync(_httpClient);
             var newBlog = new Blog
             {
                 Title = "My Blog",
@@ -121,6 +124,7 @@ namespace PersonalWeb.Api.Integration.Test
         [Fact]
         public async Task PatchTest()
         {
+            await AuthHelper.AuthenticateAsync(_httpClient);
             var newBlog = new Blog
             {
                 Title = "My Blog",
@@ -149,6 +153,7 @@ namespace PersonalWeb.Api.Integration.Test
         [Fact]
         public async Task DeleteTest()
         {
+            await AuthHelper.AuthenticateAsync(_httpClient);
             var newBlog = new Blog
             {
                 Title = "My Blog",

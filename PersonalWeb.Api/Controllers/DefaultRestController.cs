@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PersonalWeb.Api.Models;
@@ -31,6 +32,7 @@ namespace PersonalWeb.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Post([FromBody] TEntity entity)
         {
             var createdData = await _repository.Create(entity);
@@ -38,6 +40,7 @@ namespace PersonalWeb.Api.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Put(Guid key, [FromBody] TEntity entity)
         {
             var patchedData = await _repository.Put(key, entity);
@@ -45,6 +48,7 @@ namespace PersonalWeb.Api.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(Guid key)
         {
             await _repository.Delete(key);

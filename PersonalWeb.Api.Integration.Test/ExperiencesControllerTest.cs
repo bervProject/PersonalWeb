@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.AspNetCore.Mvc.Testing;
 using PersonalWeb.Api.Integration.Test.Models;
 using PersonalWeb.Api.Models;
@@ -27,7 +27,7 @@ namespace PersonalWeb.Api.Integration.Test
             _scope = _factory.Services.CreateScope();
             _dbContext = _scope.ServiceProvider.GetRequiredService<EntityFramework.PersonalWebApiContext>();
         }
-        
+
         public void Dispose()
         {
             _dbContext.Experiences.ExecuteDelete();
@@ -38,41 +38,36 @@ namespace PersonalWeb.Api.Integration.Test
         [Fact]
         public async Task Get()
         {
-            var client = _factory.CreateClient();
-            var response = await client.GetAsync(_baseUrl);
+            var response = await _httpClient.GetAsync(_baseUrl);
             Assert.True(response.IsSuccessStatusCode);
             var bodyResponse = await response.Content.ReadFromJsonAsync<ODataListResponse<Experience>>();
             var emptyResult = new List<Experience>();
             Assert.NotNull(bodyResponse);
             Assert.Equal(emptyResult, bodyResponse.Value);
         }
-        
+
         [Fact]
         public async Task PostTest()
         {
-            var newProject = new Experience()
+            await AuthHelper.AuthenticateAsync(_httpClient);
+            var newExperience = new Experience
             {
-                Title = "My Experience",
-                Description = "Hello My Experience",
-                StartDate = new DateTimeOffset(),
+                CompanyName = "Acme Corp",
+                RoleTitle = "Software Engineer",
                 Location = "Bandung",
-                ExperienceType = "Work",
-                EntityName = "My Work",
-                EntityLink = "https://personal.com",
+                StartDate = new DateTimeOffset(2022, 1, 1, 0, 0, 0, TimeSpan.Zero),
+                IsCurrent = true,
                 CreateBy = "Test",
                 CreatedDate = new DateTimeOffset()
             };
-            var response = await _httpClient.PostAsJsonAsync(_baseUrl, newProject);
+            var response = await _httpClient.PostAsJsonAsync(_baseUrl, newExperience);
             Assert.True(response.IsSuccessStatusCode);
             var bodyResponse = await response.Content.ReadFromJsonAsync<Experience>();
             Assert.NotNull(bodyResponse);
-            Assert.Equal("My Experience", bodyResponse.Title);
-            Assert.Equal("Hello My Experience", bodyResponse.Description);
+            Assert.Equal("Acme Corp", bodyResponse.CompanyName);
+            Assert.Equal("Software Engineer", bodyResponse.RoleTitle);
             Assert.Equal("Bandung", bodyResponse.Location);
-            Assert.Equal("Work", bodyResponse.ExperienceType);
-            Assert.Equal("My Work", bodyResponse.EntityName);
-            Assert.Equal("https://personal.com", bodyResponse.EntityLink);
-
+            Assert.True(bodyResponse.IsCurrent);
         }
     }
 }
